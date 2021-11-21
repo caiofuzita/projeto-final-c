@@ -11,7 +11,6 @@ int i, opcao;
 int sair = 0;
 typedef char string[100];
 
-
 typedef struct
 { //estrutura de dados do funcionário
     string cpf[100];
@@ -25,11 +24,10 @@ typedef struct
 
 funcionariosDados funcionario[100];
 
-
-
 void main()
  {
     setlocale(LC_ALL,"");
+    iniciaVetor();
     do // loop menu -> programa principal
     {
         system("cls");
@@ -94,7 +92,27 @@ principal() //escolhe a função a ser executada
 
 pesquisar()
 {
+    string busca[50];
+    system("cls");
+    int contador = 0;
+    printf("Digite o CPF a ser buscado: ");
+    scanf("%s",&busca);
 
+    for (i = 0; i < 100; i++)
+    {
+        if (strcmp(busca,funcionario[i].cpf) == 0)
+        {
+            imprimeFuncionario();
+            contador++;
+        }
+    }
+
+    if (contador == 0)
+        printf("Nenhum funcionário encontrado");
+
+    printf("\n\nPressione qualquer tecla para retornar ao menu");
+
+    getch();
 }
 
 cadastro()
@@ -124,7 +142,7 @@ cadastro()
     printf("\nPor favor, confira os dados: \n");
     imprimeFuncionario();
 
-    printf("\n\nSe deseja continuar, digite 1\nSe deseja editar, digite 2: ");
+    printf("\n\nSe deseja continuar, digite 1\nSe deseja editar, digite 2\n");
     scanf("%d",&verificador);
 
     switch(verificador)
@@ -137,12 +155,38 @@ cadastro()
             break;
 
         case 2:
-            editar(i);
+            editarFuncionario(i);
             break;
     }
 }
 
-editar(indice)
+editar()
+{
+    int indicador = 0;
+    i = 0;
+    if (funcionario[i].salario != 0)
+    {
+        system("cls");
+        while(funcionario[i].salario != 0)
+        {
+            printf("\nFuncionário %d",i+1);
+            imprimeFuncionario();
+            printf("\n");
+            i++;
+        }
+        printf("Escolha o número do funcionário a ser editado: ");
+        scanf("%d",&indicador);
+        indicador = indicador - 1;;
+        editarFuncionario(indicador);
+    }
+    else
+    {
+        printf("Nenhum funcionário cadastrado, pressione qualquer tecla para voltar ao menu");
+        getch();
+    }
+}
+
+editarFuncionario(indice)
 {
     indice = i;
 
@@ -199,74 +243,61 @@ editar(indice)
 
     } while (opcao != 8);
 
-
-
     printf("\nPressione qualquer tecla para retornar ao menu principal");
     getch();
 }
 
 excluir()
 {
-    int indicador;
+    int a;
+    system("cls");
 
-    do
+    i = 0;
+    if (funcionario[i].salario != 0)
     {
-        for (i = 0; i < 100; i++)
+        system("cls");
+        while(funcionario[i].salario != 0)
         {
-            if (funcionario[i].salario != 0)
-            {
-                system("cls");
-                printf("\nFuncionario %d",i+1);
-                imprimeFuncionario();
-                sair = 1;
-                break;
-            }
-            else
-            {
-                printf("Nenhum funcionário cadastro, pressione qualquer tecla para voltar ao menu");
-                getch();
-                break;
-            }
+            printf("\nFuncionário %d",i+1);
+            imprimeFuncionario();
+            printf("\n");
+            i++;
         }
-    } while (sair == 0);
+        printf("Digite o número do funcionário a ser excluído: ");
+        scanf("%d",&a);
+        a--;
+        strcpy(funcionario[a].cpf, "NULL");
+        strcpy(funcionario[a].nome, "NULL");
+        funcionario[a].salario = 0.0;
+        strcpy(funcionario[a].endereco, "NULL");
+        strcpy(funcionario[a].cep, "NULL");
+        strcpy(funcionario[a].estado, "NULL");
+        strcpy(funcionario[a].cidade, "NULL");
 
-
-    printf("\n\nEscolha o número do usuário a ser excluído: ");
-    scanf("%d",&indicador);
-
-    indicador = indicador - 1;
-    strcpy(funcionario[indicador].cpf, "NULL");
-    strcpy(funcionario[indicador].nome, "NULL");
-    funcionario[indicador].salario = 0.0;
-    strcpy(funcionario[indicador].endereco, "NULL");
-    strcpy(funcionario[indicador].cep, "NULL");
-    strcpy(funcionario[indicador].estado, "NULL");
-    strcpy(funcionario[indicador].cidade, "NULL");
-
-    printf("\nPressione qualquer tecla para retornar ao menu principal");
-    getch();
+        printf("\nUsuário excluído com sucesso, pressione qualquer tecla para voltar ao menu");
+        getch();
+    }
+    else
+    {
+        printf("Nenhum funcionário cadastrado, pressione qualquer tecla para voltar ao menu");
+        getch();
+    }
 }
 
 mostrarFuncionarios()
 {
+    system("cls");
     for (i = 0; i < 100; i++)
     {
         if (funcionario[i].salario != 0)
         {
-            system("cls");
-            printf("\nFuncionario %d",i+1);
+            printf("\nFuncionario %d", i+1);
             imprimeFuncionario();
-            printf("\n\n\nPressione qualquer tecla para voltar ao menu");
-            getch();
-            break;
-        }
-        else
-        {
-            printf("Nenhum funcionário cadastro, pressione qualquer tecla para voltar ao menu");
-            getch();
-            break;
+            printf("\n");
         }
     }
+    printf("\n\n\nPressione qualquer tecla para voltar ao menu");
+    getch();
 }
 
 encerrar()
@@ -278,12 +309,14 @@ encerrar()
 
 verificaVetor()
 {
-    for(i = 0; i < 100; i++)
-    {
-        if (funcionario[i].salario < 1000 || funcionario[i].salario > 100000)
-            return i;
-            break;
-    }
+        for (i = 0; i < 100; i++)
+        {
+            if (funcionario[i].salario == 0)
+            {
+                return i;
+                break;
+            }
+        }
 }
 
 limpaVetor()
@@ -354,4 +387,10 @@ imprimeFuncionario()
     printf("\nCEP: %s",funcionario[i].cep);
     printf("\nEstado: %s",funcionario[i].estado);
     printf("\nCidade: %s",funcionario[i].cidade);
+}
+
+iniciaVetor()
+{
+    for (i = 0; i < 100; i++)
+        funcionario[i].salario = 0;
 }
