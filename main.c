@@ -117,8 +117,6 @@ pesquisar()
 
 cadastro()
 {
-    int verificador;
-
     system("cls");
     for(i = 0; i < 30; i++)
         putchar('*');
@@ -128,7 +126,13 @@ cadastro()
     printf("\n\n");
 
     verificaVetor(); //verifica e retorna um vetor que não está usado
-    limpaVetor(); // limpa o vetor
+    cadastroFuncionario();
+}
+
+cadastroFuncionario()
+{
+    int verificador;
+    limpaVetor();
 
     cadastroCpf();
     cadastroNome();
@@ -162,28 +166,23 @@ cadastro()
 
 editar()
 {
-    int indicador = 0;
-    i = 0;
-    if (funcionario[i].salario != 0)
+    int indicador, verificador;
+    system("cls");
+    for (i = 0; i < 100; i++)
     {
-        system("cls");
-        while(funcionario[i].salario != 0)
+        if (funcionario[i].salario != 0)
         {
-            printf("\nFuncionário %d",i+1);
+            printf("\nFuncionario %d", i+1);
             imprimeFuncionario();
             printf("\n");
-            i++;
+
         }
-        printf("Escolha o número do funcionário a ser editado: ");
-        scanf("%d",&indicador);
-        indicador = indicador - 1;;
-        editarFuncionario(indicador);
     }
-    else
-    {
-        printf("Nenhum funcionário cadastrado, pressione qualquer tecla para voltar ao menu");
-        getch();
-    }
+    printf("\nSelecione o funcionário a ser editado: ");
+    scanf("%d",&i);
+    i--;
+
+    cadastroFuncionario();
 }
 
 editarFuncionario(indice)
