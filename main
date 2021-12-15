@@ -1,6 +1,6 @@
-//   Dados dos funcion·rios (CPF, nome, sal·rio mensal com dias casas decimais, endereÁo, CEP, estado e cidade)
-/* A entrada conter· v·rios casos de teste. Cada caso de teste dever· receber os dados pelo teclado.
- final da entrada È determinado por digitaÁ„o de 0 (zero) em CNPJ, ou CPF, ou RA, ou outro que vocÍ definir.*/
+//   Dados dos funcion√°rios (CPF, nome, sal√°rio mensal com dias casas decimais, endere√ßo, CEP, estado e cidade)
+/* A entrada conter√° v√°rios casos de teste. Cada caso de teste dever√° receber os dados pelo teclado.
+ final da entrada √© determinado por digita√ß√£o de 0 (zero) em CNPJ, ou CPF, ou RA, ou outro que voc√™ definir.*/
 
 #include <stdio.h>
 #include <locale.h>
@@ -12,7 +12,7 @@ int sair = 0;
 typedef char string[100];
 
 typedef struct
-{ //estrutura de dados do funcion·rio
+{ //estrutura de dados do funcion√°rio
     string cpf[100];
     string nome[100];
     float salario;
@@ -37,30 +37,30 @@ void main()
 
  }
 
-menu() // interface do menu e seleÁ„o de funÁ„o
+menu() // interface do menu e sele√ß√£o de fun√ß√£o
 {
     for(i = 0; i < 30; i++)
         putchar('*');
 
-    printf("\n*** Dados dos funcion·rios ***\n");
+    printf("\n*** Dados dos funcion√°rios ***\n");
 
     for(i = 0; i < 30; i++)
         putchar('*');
 
-    printf("\n\n************ OpÁıes ************");
+    printf("\n\n************ Op√ß√µes ************");
 
-    printf("\n1. >> Pesquisar funcion·rio");
-    printf("\n2. >> Cadastrar novo funcion·rio.");
-    printf("\n3. >> Editar funcion·rio existente.");
-    printf("\n4. >> Excluir funcion·rio existente.");
-    printf("\n5. >> Mostrar todos os funcion·rios existentes.");
+    printf("\n1. >> Pesquisar funcion√°rio");
+    printf("\n2. >> Cadastrar novo funcion√°rio.");
+    printf("\n3. >> Editar funcion√°rio existente.");
+    printf("\n4. >> Excluir funcion√°rio existente.");
+    printf("\n5. >> Mostrar todos os funcion√°rios existentes.");
     printf("\n6. >> Sair.");
 
-    printf("\n\nEscolha uma opÁ„o: ");
+    printf("\n\nEscolha uma op√ß√£o: ");
     scanf("%d", &opcao);
 }
 
-principal() //escolhe a funÁ„o a ser executada
+principal() //escolhe a fun√ß√£o a ser executada
 {
     switch(opcao)
     {
@@ -108,7 +108,7 @@ pesquisar()
     }
 
     if (contador == 0)
-        printf("Nenhum funcion·rio encontrado");
+        printf("Nenhum funcion√°rio encontrado");
 
     printf("\n\nPressione qualquer tecla para retornar ao menu");
 
@@ -127,7 +127,7 @@ cadastro()
         putchar('*');
     printf("\n\n");
 
-    verificaVetor(); //verifica e retorna um vetor que n„o est· usado
+    verificaVetor(); //verifica e retorna um vetor que n√£o est√° usado
     limpaVetor(); // limpa o vetor
 
     cadastroCpf();
@@ -149,7 +149,7 @@ cadastro()
     {
         case 1:
             system("cls");
-            printf("Usu·rio cadastro com sucesso! pressione qualquer tecla para voltar ao menu principal.");
+            printf("Usu√°rio cadastro com sucesso! pressione qualquer tecla para voltar ao menu principal.");
             getch();
             system("cls");
             break;
@@ -174,7 +174,7 @@ editar()
 
         }
     }
-    printf("\nSelecione o funcion·rio a ser editado: ");
+    printf("\nSelecione o funcion√°rio a ser editado: ");
     scanf("%d",&i);
     i--;
 
@@ -199,7 +199,7 @@ editar()
     {
         case 1:
             system("cls");
-            printf("Usu·rio cadastro com sucesso! pressione qualquer tecla para voltar ao menu principal.");
+            printf("Usu√°rio cadastro com sucesso! pressione qualquer tecla para voltar ao menu principal.");
             getch();
             system("cls");
             break;
@@ -220,14 +220,14 @@ editarFuncionario(indice)
 
         printf("\n1. >> Editar CPF");
         printf("\n2. >> Editar nome");
-        printf("\n3. >> Editar sal·rio");
-        printf("\n4. >> Editar endereÁo");
+        printf("\n3. >> Editar sal√°rio");
+        printf("\n4. >> Editar endere√ßo");
         printf("\n5. >> Editar CEP");
         printf("\n6. >> Editar estado");
         printf("\n7. >> Editar cidade");
         printf("\n8. >> Sair");
 
-        printf("\nEscolha uma opÁ„o: ");
+        printf("\nEscolha uma op√ß√£o: ");
         scanf("%d", &opcao);
         switch(opcao)
         {
@@ -282,12 +282,12 @@ excluir()
         system("cls");
         while(funcionario[i].salario != 0)
         {
-            printf("\nFuncion·rio %d",i+1);
+            printf("\nFuncion√°rio %d",i+1);
             imprimeFuncionario();
             printf("\n");
             i++;
         }
-        printf("Digite o n˙mero do funcion·rio a ser excluÌdo: ");
+        printf("Digite o n√∫mero do funcion√°rio a ser exclu√≠do: ");
         scanf("%d",&a);
         a--;
         strcpy(funcionario[a].cpf, "NULL");
@@ -298,12 +298,12 @@ excluir()
         strcpy(funcionario[a].estado, "NULL");
         strcpy(funcionario[a].cidade, "NULL");
 
-        printf("\nUsu·rio excluÌdo com sucesso, pressione qualquer tecla para voltar ao menu");
+        printf("\nUsu√°rio exclu√≠do com sucesso, pressione qualquer tecla para voltar ao menu");
         getch();
     }
     else
     {
-        printf("Nenhum funcion·rio cadastrado, pressione qualquer tecla para voltar ao menu");
+        printf("Nenhum funcion√°rio cadastrado, pressione qualquer tecla para voltar ao menu");
         getch();
     }
 }
@@ -356,27 +356,27 @@ limpaVetor()
 
 cadastroCpf()
 {
-    printf("\nDigite o cpf do funcion·rio: ");
+    printf("\nDigite o cpf do funcion√°rio: ");
     fflush(stdin);
     scanf("%s",&funcionario[i].cpf);
 }
 
 cadastroNome()
 {
-    printf("\nDigite o nome do funcion·rio: ");
+    printf("\nDigite o nome do funcion√°rio: ");
     fflush(stdin);
     scanf("%[A-Z a-z]",funcionario[i].nome);
 }
 
 cadastroSalario()
 {
-    printf("\nDigite o sal·rio do funcion·rio: ");
+    printf("\nDigite o sal√°rio do funcion√°rio: ");
     scanf("%f",&funcionario[i].salario);
 }
 
 cadastroEndereco()
 {
-    printf("\nDigite o endereÁo: ");
+    printf("\nDigite o endere√ßo: ");
     fflush(stdin);
     scanf("%[A-Z a-z 0-9]",funcionario[i].endereco);
 }
@@ -407,7 +407,7 @@ imprimeFuncionario()
     printf("\nCPF: %s",funcionario[i].cpf);
     printf("\nNome: %s",funcionario[i].nome);
     printf("\nSalario: %.2f",funcionario[i].salario);
-    printf("\nEndereÁo: %s",funcionario[i].endereco);
+    printf("\nEndere√ßo: %s",funcionario[i].endereco);
     printf("\nCEP: %s",funcionario[i].cep);
     printf("\nEstado: %s",funcionario[i].estado);
     printf("\nCidade: %s",funcionario[i].cidade);
